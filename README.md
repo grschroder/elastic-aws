@@ -13,14 +13,22 @@ provider "aws" {
 }
 ```
 
-- Run terraform init
+- Run terraform init.
 
-- Run terraform apply
+- Run terraform apply.
 
-- Use the output information to connect in instances and configure esxx public IPs on docker-compose.yml
+- Use the output information to connect in instances and configure esxx public IPs on each docker-compose.yml.
 
 ```Powershell
       - "es01-test:ES01-PUBLIC-IP"
       - "es02-test:ES02-PUBLIC-IP"
       - "es03-test:ES03-PUBLIC-IP"
 ```
+
+- Start docker-compose on each instance.
+
+```Powershell
+docker-compose up
+```
+
+- Check logs and now you can access kibana interface using es01-test public on port 5601. 
