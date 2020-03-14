@@ -30,7 +30,7 @@ resource "aws_instance" "es01-test" {
       "${aws_security_group.elastic-test-sg.id}"
   ]
 
-  user_data = "${file("install_docker.sh")}"
+  user_data = "${file("prepare_es01.sh")}"
 
   tags = {
     Name = "es01-test"
