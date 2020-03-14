@@ -40,9 +40,10 @@ resource "aws_instance" "es01-test" {
 
 resource "aws_instance" "es02-test" {
   ami           = "${data.aws_ami.ubuntu.id}"
-  #instance_type = "t2.medium"
-  instance_type = "t2.micro"
-  subnet_id = "${aws_subnet.elastic-test-subnet2.id}"
+  instance_type = "t2.medium"
+  #instance_type = "t2.micro"
+  #subnet_id = "${aws_subnet.elastic-test-subnet2.id}"
+  subnet_id = "${aws_subnet.elastic-test-subnet1.id}"
   key_name = "schroder-test-temp"
   vpc_security_group_ids = [
       "${aws_security_group.elastic-test-sg.id}"
@@ -56,9 +57,10 @@ resource "aws_instance" "es02-test" {
 
 resource "aws_instance" "es03-test" {
   ami           = "${data.aws_ami.ubuntu.id}"
-  #instance_type = "t2.medium"
-  instance_type = "t2.micro"
-  subnet_id = "${aws_subnet.elastic-test-subnet3.id}"
+  instance_type = "t2.medium"
+  #instance_type = "t2.micro"
+  #subnet_id = "${aws_subnet.elastic-test-subnet3.id}"
+  subnet_id = "${aws_subnet.elastic-test-subnet1.id}"
   key_name = "schroder-test-temp"
   vpc_security_group_ids = [
       "${aws_security_group.elastic-test-sg.id}"
