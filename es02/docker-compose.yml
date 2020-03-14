@@ -1,8 +1,8 @@
 version: '2.2'
 services:
-  es01-test:
+  es02-test:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.6.0
-    container_name: es01-test
+    container_name: es02-test
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "ELASTIC_PASSWORD=testpass2020"
@@ -10,12 +10,12 @@ services:
       - bootstrap.memory_lock=true
       - network.host=_local_,_site_
       - network.publish_host=INSTANCE-PUBLIC-IPV4
-      - node.name=es01-test
+      - node.name=es02-test
       - node.master=true
       - node.data=true
       - http.port=9200
       - transport.port=9300
-      - discovery.seed_hosts=es02-test,es03-test
+      - discovery.seed_hosts=es01-test,es03-test
       - cluster.initial_master_nodes=es01-test,es02-test,es03-test      
     ulimits:
       memlock:
@@ -28,12 +28,12 @@ services:
       - 9300:9300
     networks:
       - elastic
-    hostname: es01-test
+    hostname: es02-test
 
 
-  kb01-test:
+  kb02-test:
     image: docker.elastic.co/kibana/kibana:7.6.0
-    container_name: kb01-test
+    container_name: kb02-test
     volumes:      
       - /elastic-aws/es01/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
@@ -51,5 +51,5 @@ networks:
       ipam:
         driver: default
         config:
-        - subnet: 10.250.0.1/24
+        - subnet: 10.250.1.1/24
       

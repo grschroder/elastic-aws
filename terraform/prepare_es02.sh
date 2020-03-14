@@ -26,4 +26,4 @@ chmod +x /usr/local/bin/docker-compose
 sysctl -w vm.max_map_count=262144
 git clone https://github.com/grschroder/elastic-aws.git
 ipv4=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
-sed -i s/INSTANCE-PUBLIC-IPV4/$ipv4/ /elastic-aws/es01/docker-compose.yml
+sed -i s/INSTANCE-PUBLIC-IPV4/$ipv4/ /elastic-aws/es02/docker-compose.yml

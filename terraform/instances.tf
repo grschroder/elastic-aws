@@ -37,11 +37,7 @@ resource "aws_instance" "es01-test" {
   }
 }
 
-output "instance_ips" {
-  value = ["${aws_instance.es01-test.*.public_ip}"]
-}
 
-/*
 resource "aws_instance" "es02-test" {
   ami           = "${data.aws_ami.ubuntu.id}"
   #instance_type = "t2.medium"
@@ -52,6 +48,7 @@ resource "aws_instance" "es02-test" {
       "${aws_security_group.elastic-test-sg.id}"
   ]
 
+  user_data = "${file("prepare_es02.sh")}"
   tags = {
     Name = "es02-test"
   }
@@ -66,9 +63,20 @@ resource "aws_instance" "es03-test" {
   vpc_security_group_ids = [
       "${aws_security_group.elastic-test-sg.id}"
   ]
-
+  
+  user_data = "${file("prepare_es03.sh")}"
+  
   tags = {
     Name = "es03-test"
   }
-}*/
+}
+
+output "instance_ips" {
+  value = [
+    "${aws_instance.es01-test.*.public_ip}",
+    "${aws_instance.es02-test.*.public_ip}",
+    "${aws_instance.es03-test.*.public_ip}"
+  ]
+}
+
 
