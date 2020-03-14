@@ -16,7 +16,8 @@ services:
       - http.port=9200
       - transport.port=9300
       - discovery.seed_hosts=es01-test,es03-test
-      - cluster.initial_master_nodes=es01-test,es02-test,es03-test      
+      - cluster.initial_master_nodes=es01-test,es02-test,es03-test
+      - xpack.monitoring.collection.enabled=true    
     ulimits:
       memlock:
         soft: -1
@@ -28,20 +29,10 @@ services:
       - 9300:9300
     networks:
       - elastic
-    hostname: es02-test
-
-
-  kb02-test:
-    image: docker.elastic.co/kibana/kibana:7.6.0
-    container_name: kb02-test
-    volumes:      
-      - /elastic-aws/es01/kibana.yml:/usr/share/kibana/config/kibana.yml
-    ports:
-      - 5600:5600      
-      - 5601:5601
-    networks:
-      - elastic    
-    
+    extra_hosts:
+      - "es01-test:ES01-PUBLIC-IP"
+      - "es02-test:ES02-PUBLIC-IP"
+      - "es03-test:ES03-PUBLIC-IP"
 volumes:
   data01:
   
@@ -51,5 +42,5 @@ networks:
       ipam:
         driver: default
         config:
-        - subnet: 10.250.1.1/24
+        - subnet: 10.250.2.1/24
       

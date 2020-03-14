@@ -1,6 +1,0 @@
-server.name: "kb02-test"
-server.port: 5601
-server.host: 0.0.0.0
-elasticsearch.hosts: [ "https://es02-test:9200" ]
-elasticsearch.username: "elastic"
-elasticsearch.password: "testpass2020"
