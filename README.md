@@ -31,4 +31,4 @@ provider "aws" {
 docker-compose up
 ```
 
-- Check logs and now you can access kibana interface using es01-test public on port 5601. 
+- Check logs and now you can access kibana interface using es01-test public ip on port 5601. 
